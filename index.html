@@ -79,13 +79,71 @@ body, html {
   </div>
 </div>
 
-<!-- First Parallax Image with Logo Text -->
+<!-- First Parallax Image with Animated Roles -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
   <div class="w3-display-middle" style="white-space:nowrap;">
-    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">WEBSITE</span> LOGO</span>
+    <div class="w3-center w3-padding-large w3-black w3-animate-opacity">
+      <span class="w3-xlarge w3-wide">I am Joyce</span><br>
+      <span class="w3-medium">
+        <span class="typed-text"></span><span class="cursor">&nbsp;</span>
+      </span>
+    </div>
   </div>
 </div>
 
+<!-- CSS for Typewriter Animation -->
+<style>
+  .typed-text {
+    color: #ffd700;
+    font-weight: bold;
+  }
+
+  .cursor {
+    display: inline-block;
+    background-color: #ffd700;
+    width: 2px;
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+</style>
+
+<!-- JavaScript for Typing Animation -->
+<script>
+  const roles = ["Coder", "Technofreak", "Explorer", "Minimalist", "Humane"];
+  let roleIndex = 0;
+  let charIndex = 0;
+  const typedText = document.querySelector(".typed-text");
+
+  function typeRole() {
+    if (charIndex < roles[roleIndex].length) {
+      typedText.textContent += roles[roleIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeRole, 100);
+    } else {
+      setTimeout(eraseRole, 1500);
+    }
+  }
+
+  function eraseRole() {
+    if (charIndex > 0) {
+      typedText.textContent = roles[roleIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(eraseRole, 50);
+    } else {
+      roleIndex = (roleIndex + 1) % roles.length;
+      setTimeout(typeRole, 500);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (roles.length) setTimeout(typeRole, 1000);
+  });
+</script>
+  
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
   <h3 class="w3-center">ABOUT ME</h3>
